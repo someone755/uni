@@ -1,0 +1,5 @@
+# Ignoring personal CBP files
+*.cbp
+*.depend
+*.layout
+*.o

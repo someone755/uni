@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include "predavanje2-23.h"
-#include "predavanje3-2.h"
-#include "predavanje3-9.h"
+#include "predavanje3-02.h"
+#include "predavanje3-09.h"
+#include "predavanje3-16.h"
 
 int main() {
     printf("Hello predavanja!\n");
@@ -11,9 +12,10 @@ int main() {
      *  Comment out individual lectures you want to read
      *  or deal with the mess.
      */
-    predavanje2_23();
-    predavanje3_2();
-    predavanje3_9();
+    //predavanje2_23();
+    //predavanje3_02();
+    //predavanje3_09();
+    predavanje3_16();
     return 0;
 }
 

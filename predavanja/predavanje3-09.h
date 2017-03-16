@@ -14,7 +14,7 @@
      else return 0;
  }
 
- void predavanje3_9 () {
+ void predavanje3_09 () {
     //Modifikatorji formatnih določil
     printf("### Predavanje 9.3.:\n");
     printf("%4d\n", 12);

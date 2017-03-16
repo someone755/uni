@@ -31,6 +31,6 @@
  *   %d dela do 16 bitov
  */
 
- void predavanje3_2 () {
+ void predavanje3_02 () {
      printf("### Predavanje 2.3.:\n");
 }

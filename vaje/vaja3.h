@@ -30,6 +30,9 @@ void vaja3 () {
 void prikazi() {
   char znak;
   scanf("%c", &znak);
+  // Puhan stvar izpelje drugače:
+  // if (znak >= 'a' && znak <= 'z') znak += 'A' - 'a';
+  // 'a' je ascii code znaka a
   if(znak > 96) {
     znak = znak - 32;
   } else {
@@ -41,8 +44,10 @@ void prikazi() {
 /** int test1(float a, float b);
  *  void test2(double x);
  *  float test3(int x);
+ *
  *  int z;
  *  float x;
+ *
  *   Komentiraj klice:
  *  z = test1(1.1, 0.4); // w: truncation from double to float
  *  z = test1(2,3); // ok

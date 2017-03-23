@@ -5,6 +5,7 @@
 #include "predavanje3-02.h"
 #include "predavanje3-09.h"
 #include "predavanje3-16.h"
+#include "predavanje3-23.h"
 
 int main() {
     printf("Hello predavanja!\n");
@@ -15,7 +16,8 @@ int main() {
     //predavanje2_23();
     //predavanje3_02();
     //predavanje3_09();
-    predavanje3_16();
+    //predavanje3_16();
+    //predavanje3_23();
     return 0;
 }
 

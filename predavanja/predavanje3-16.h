@@ -24,7 +24,8 @@ void predavanje3_16 () {
     }
 }
 
-/*struct vektor { // nov podatkovni tip // commenting out for sake of 3-23 which actually teaches structures
+// commenting out for sake of 3-23 which actually teaches structures
+/*struct vektor { // nov podatkovni tip
     float x;
     float y;
     float z;

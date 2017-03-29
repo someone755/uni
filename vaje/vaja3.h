@@ -16,7 +16,6 @@ void vaja3 () {
       * Skupaj:  1989000014062258900000000000000.00
       *
       * double (15 mest natančnosti, od +-10^-308 do +-10^308)
-
       */
     float x = 0.2;
     printf("%d\n", x == (float)0.2);

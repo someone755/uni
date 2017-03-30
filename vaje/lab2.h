@@ -55,7 +55,7 @@ void work(int h, struct cplx i, struct cplx j) {
         case 5 : //using out struct to save abs values
             out.real = sqrt(i.real*i.real+i.imgn*i.imgn);
             out.imgn = sqrt(j.real*j.real+j.imgn*j.imgn);
-            if (h==5) printf("Abs values of your two numbers are\n%lg\n%lg\n", out.real, out.imgn);
+            printf("Abs values of your two numbers are\n%lg\n%lg\n", out.real, out.imgn);
         default :
             break;
     }

@@ -1,37 +1,32 @@
-/** c - seme fraktala (c=i || c=-0.5+0.5i itd.)
- *
- *  Endgoal: preko celega RES×RES delamo f(z) in preverjamo če abs{f256(z)}<2 oz pri katerem abs{fn(z)}>2
- */
-#define RES 50 //image resolution, "lahko si tud fulhade nardimo"
+#define RES 1000 //image resolution, "lahko si tud fulhade nardite"
+
 struct cplx {
     double real;
     double imgn;
 };
+
 struct cplx func(struct cplx z);
 unsigned char barva(struct cplx b);
+void drawImg(unsigned char arr[RES][RES]);
 
 //constant declaration / fractal seed
-struct cplx c={0,1};
+struct cplx c={-0.4,0.6};
 
 void lab3(){
     struct cplx comp;
     unsigned char slika[RES][RES];
     int i, j;
-    for(i=RES/2.0;i>=(-1)*RES/2.0;i--){//fix on imgn part
-        comp.imgn=1.7/RES * i;
-        //printf("i: %d\n",i);
-        for(j=-RES/2.0;j<=RES/2.0;j++){ //roll over real parts
-            //printf("j: %d\n",j);
-            comp.real = 1.7/RES * j;
+    for(i=0;i<RES;i++){//fix on imgn part
+        comp.imgn=1.7-(3.4*i/RES);
+        for(j=0;j<RES;j++){ //roll over real parts
+            comp.real = -1.7+(3.4*j/RES);
             slika[i][j]=barva(comp);
-            //printf("slika: %d\n",slika[i][j]);
-            //getchar();
         }
-        //printf("i,j: %d\n",slika[i][j]);
-        //getchar();
     }
+    drawImg(slika);
     //shraniBMP(slika,RES,RES,"fractal.bmp"); //and now we wait to get this function
 }
+
 
 unsigned char barva(struct cplx b){
     unsigned char i;
@@ -42,11 +37,6 @@ unsigned char barva(struct cplx b){
         }
      }
      return 255-i;
-    /** i=0 -> i<255 -(yes)-> barva = 255-i
-     *    ^       ˇno      yes^
-     *    |      z=P(z) -> |z|>2
-     *    \----------------<ˇno
-     */
 }
 
 struct cplx func(struct cplx z){
@@ -56,9 +46,22 @@ struct cplx func(struct cplx z){
     out.imgn = z.imgn*z.real+z.real*z.imgn+c.imgn;
     return out;
 };
-
-/**             ˇ--------------------------------------------------------------------\
- * i i=0 -> i<DIM -(yes)-> zRe=spodnja_meja+i(zg-sp)/(DIM-1) -> j=0 -> j<DIM -(ne)-> /
- *                                         ˛------- j++ ---------^      ˇyes
- *                               slika[i][j]=barva(z,c) <- zIm=sp+j(zg-sp)/(DIM-1)
- */
+void drawImg(unsigned char arr[RES][RES]){
+    FILE *f = fopen("file.pgm","w");
+    //FILE is an object type
+    //*f points to the newly created "file.pgm" in "w" (write/overwrite) mode
+    if(f==NULL){
+        printf("Error opening file!\n");
+        exit(1);
+    }
+    int i, j;
+    fprintf(f,"P2\n%d %d\n255\n",RES,RES); //pbm type 2 (grayscale), resolution (hotizontal, vertical), grayscale step
+    for(i=0;i<RES;i++){
+        for(j=0;j<RES;j++){
+            //printf("%d, %d\n",i+j, arr[i+j]);
+            if(j==499) fprintf(f,"%d\n",arr[i][j]); //.pgm requires newline character at end of row
+            else fprintf(f,"%d ",arr[i][j]);
+        }
+    }
+    fclose(f);
+}

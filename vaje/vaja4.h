@@ -7,7 +7,7 @@ struct razdalja {
 struct razdalja sestej (struct razdalja a, struct razdalja b);
 
 void vaja4() {
-/** Pierre Francois Verhulst -- neki z zajci -- "če je kdo tle amatersi biolog več o tem ve k js"
+/** Pierre Francois Verhulst -- neki z zajci -- "če je kdo tle amaterski biolog več o tem ve k js"
  *  (p(n+1) - p(n))/p(n) = r*(1 - p(n))
  */
     double pn1, pn=0.01;

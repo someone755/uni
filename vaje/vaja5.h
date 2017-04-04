@@ -24,7 +24,8 @@ void vaja5(){
  *  To utemelji s svojim računsko uravnoteženim random generatorjem.
  *  (Kak ta generator je, nimam pojma. Pull request/facebook pm/email dobrodošel.)
  *  (Napisan generator je sicer narejen za podobno pravičnost, vendar 1) ni enak
- *  in 2) je (verjetno, saj Puhanovega nimam na voljo za primerjavo) počasnejši.)
+ *  in 2) je (verjetno, saj Puhanovega nimam na voljo za primerjavo) počasnejši. Ga
+ *  je pa, vsaj kar se mene tiče, lažje razumet.)
  */
 int mojRand(int n){
     int limit = RAND_MAX-(RAND_MAX%n); // RAND_MAX skrajšamo za tistih nekaj števil (<n), ki \

@@ -4,17 +4,17 @@
 #include <time.h>
 #include <math.h>
 // individual lessons stored as unrelated headers
-#include "vaja1.h"
-#include "vaja2.h"
-#include "vaja3.h"
-#include "vaja4.h"
-#include "vaja5.h"
+//#include "vaja1.h"
+//#include "vaja2.h"
+//#include "vaja3.h"
+//#include "vaja4.h"
+//#include "vaja5.h"
 #include "vaja6.h"
 
 // laboratory exercises in a separate block of includes
-#include "lab1.h"
-#include "lab2.h"
-//#include "lab3.h"
+//#include "lab1.h"
+//#include "lab2.h"
+#include "lab3.h"
 
 int main()
 {
@@ -30,6 +30,6 @@ int main()
 
     //lab1();
     //lab2();
-    //lab3();
+    lab3();
     return 0;
 }

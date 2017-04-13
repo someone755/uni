@@ -1,4 +1,4 @@
-#define RES 1000 //image resolution, "lahko si tud fulhade nardite"
+#define RES 4000 //image resolution, "lahko si tud fulhade nardite"
 
 struct cplx {
     double real;
@@ -14,7 +14,7 @@ struct cplx c={-0.4,0.6};
 
 void lab3(){
     struct cplx comp;
-    unsigned char slika[RES][RES];
+    static unsigned char slika[RES][RES];
     int i, j;
     for(i=0;i<RES;i++){//fix on imgn part
         comp.imgn=1.7-(3.4*i/RES);
@@ -47,7 +47,7 @@ struct cplx func(struct cplx z){
     return out;
 };
 void drawImg(unsigned char arr[RES][RES]){
-    FILE *f = fopen("file.pgm","w");
+    FILE *f = fopen("file.pnm","w");
     //FILE is an object type
     //*f points to the newly created "file.pgm" in "w" (write/overwrite) mode
     if(f==NULL){
@@ -55,12 +55,15 @@ void drawImg(unsigned char arr[RES][RES]){
         exit(1);
     }
     int i, j;
-    fprintf(f,"P2\n%d %d\n255\n",RES,RES); //pbm type 2 (grayscale), resolution (hotizontal, vertical), grayscale step
+    fprintf(f,"P5\n%d %d\n255\n",RES,RES); //pbm type 2 (grayscale), resolution (hotizontal, vertical), grayscale step
+    fclose(f);
+
+    f = fopen("file.pnm","ab");
     for(i=0;i<RES;i++){
         for(j=0;j<RES;j++){
             //printf("%d, %d\n",i+j, arr[i+j]);
-            if(j==499) fprintf(f,"%d\n",arr[i][j]); //.pgm requires newline character at end of row
-            else fprintf(f,"%d ",arr[i][j]);
+            /*if(j==499) fprintf(f,"%d\n",arr[i][j]); //.pgm requires newline character at end of row
+            else */fprintf(f,"%c",arr[i][j]);
         }
     }
     fclose(f);

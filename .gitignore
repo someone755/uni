@@ -1,6 +1,10 @@
 # Ignoring personal CBP files
+*.pgm
+*.pnm
+*.bmp
 *.cbp
 *.depend
 *.layout
 *.o
 *.exe
+test.txt

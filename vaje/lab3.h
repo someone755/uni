@@ -10,7 +10,8 @@ unsigned char barva(struct cplx b);
 void drawImg(unsigned char arr[RES][RES]);
 
 //constant declaration / fractal seed
-struct cplx c={-0.4,0.6};
+const struct cplx c={-0.4,0.6};
+struct cplx out; //
 
 void lab3(){
     struct cplx comp;
@@ -40,7 +41,6 @@ unsigned char barva(struct cplx b){
 }
 
 struct cplx func(struct cplx z){
-    struct cplx out;
     // f(z)=z*z+c
     out.real = z.real*z.real-z.imgn*z.imgn+c.real;
     out.imgn = z.imgn*z.real+z.real*z.imgn+c.imgn;
@@ -55,15 +55,15 @@ void drawImg(unsigned char arr[RES][RES]){
         exit(1);
     }
     int i, j;
-    fprintf(f,"P5\n%d %d\n255\n",RES,RES); //pbm type 2 (grayscale), resolution (hotizontal, vertical), grayscale step
+    fprintf(f,"P6\n%d %d\n255\n",RES,RES); //pbm type 2 (grayscale), resolution (hotizontal, vertical), grayscale step
     fclose(f);
 
     f = fopen("file.pnm","ab");
     for(i=0;i<RES;i++){
         for(j=0;j<RES;j++){
-            //printf("%d, %d\n",i+j, arr[i+j]);
-            /*if(j==499) fprintf(f,"%d\n",arr[i][j]); //.pgm requires newline character at end of row
-            else */fprintf(f,"%c",arr[i][j]);
+            fprintf(f,"%c%c%c",(arr[i][j]*3)%256,\
+                               (arr[i][j]*2)%256,\
+                                arr[i][j]); //RGB
         }
     }
     fclose(f);

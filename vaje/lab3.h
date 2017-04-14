@@ -1,4 +1,4 @@
-#define RES 4000 //image resolution, "lahko si tud fulhade nardite"
+#define RES 2000 //image resolution, "lahko si tud fulhade nardite"
 
 struct cplx {
     double real;
@@ -6,25 +6,33 @@ struct cplx {
 };
 
 struct cplx func(struct cplx z);
-unsigned char barva(struct cplx b);
+struct cplx out; //part of func();
+
+unsigned char barva(struct cplx b); //calculate blue
 void drawImg(unsigned char arr[RES][RES]);
 
 //constant declaration / fractal seed
 const struct cplx c={-0.4,0.6};
-struct cplx out; //
 
 void lab3(){
+    const float lim = 0.7; //limits of calculation -- lower to zoom in
+    clock_t timeStart = clock();
     struct cplx comp;
     static unsigned char slika[RES][RES];
     int i, j;
     for(i=0;i<RES;i++){//fix on imgn part
-        comp.imgn=1.7-(3.4*i/RES);
+        comp.imgn=lim-(2.0*lim*i/RES);
         for(j=0;j<RES;j++){ //roll over real parts
-            comp.real = -1.7+(3.4*j/RES);
+            comp.real = (-1)*lim+(2.0*lim*j/RES);
             slika[i][j]=barva(comp);
         }
     }
+    clock_t timeEnd = clock();
+    printf("Loop gen time: %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
+    timeStart=clock();
     drawImg(slika);
+    timeEnd=clock();
+    printf("Img gen time:  %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
     //shraniBMP(slika,RES,RES,"fractal.bmp"); //and now we wait to get this function
 }
 

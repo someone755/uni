@@ -5,17 +5,16 @@ struct cplx {
     double imgn;
 };
 
-struct cplx func(struct cplx z);
-struct cplx out; //part of func();
+unsigned char barva(struct cplx b); //calculate color
+struct cplx tmp; //part of func();
 
-unsigned char barva(struct cplx b); //calculate blue
 void drawImg(unsigned char arr[RES][RES]);
 
 //constant declaration / fractal seed
 const struct cplx c={-0.4,0.6};
 
 void lab3(){
-    const float lim = 0.7; //limits of calculation -- lower to zoom in
+    const float lim = 1.7; //limits of calculation -- lower to zoom in
     clock_t timeStart = clock();
     struct cplx comp;
     static unsigned char slika[RES][RES];
@@ -35,25 +34,18 @@ void lab3(){
     printf("Img gen time:  %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
     //shraniBMP(slika,RES,RES,"fractal.bmp"); //and now we wait to get this function
 }
-
-
 unsigned char barva(struct cplx b){
     unsigned char i;
-    for (i=0;i<255;i++){
-        b=func(b);
+    for (i=0;i<256;i++){
+        tmp=b;
+        b.real = tmp.real*tmp.real-tmp.imgn*tmp.imgn+c.real;
+        b.imgn = tmp.imgn*tmp.real+tmp.real*tmp.imgn+c.imgn;
         if(sqrt(b.real*b.real+b.imgn*b.imgn)>2){
             break;
         }
      }
      return 255-i;
 }
-
-struct cplx func(struct cplx z){
-    // f(z)=z*z+c
-    out.real = z.real*z.real-z.imgn*z.imgn+c.real;
-    out.imgn = z.imgn*z.real+z.real*z.imgn+c.imgn;
-    return out;
-};
 void drawImg(unsigned char arr[RES][RES]){
     FILE *f = fopen("file.pnm","w");
     //FILE is an object type
@@ -63,7 +55,7 @@ void drawImg(unsigned char arr[RES][RES]){
         exit(1);
     }
     int i, j;
-    fprintf(f,"P6\n%d %d\n255\n",RES,RES); //pbm type 2 (grayscale), resolution (hotizontal, vertical), grayscale step
+    fprintf(f,"P6\n%d %d\n255\n",RES,RES); //pbm type 6 (binary color), resolution (hotizontal, vertical), color step
     fclose(f);
 
     f = fopen("file.pnm","ab");

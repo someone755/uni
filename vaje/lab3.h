@@ -1,3 +1,4 @@
+#include "../../cdraw/drawBmp.h"
 #define RES 2000 //image resolution, "lahko si tud fulhade nardite"
 
 struct cplx {
@@ -7,8 +8,6 @@ struct cplx {
 
 unsigned char barva(struct cplx b); //calculate color
 struct cplx tmp; //part of func();
-
-void drawImg(unsigned char arr[RES][RES]);
 
 //constant declaration / fractal seed
 const struct cplx c={-0.4,0.6};
@@ -29,10 +28,9 @@ void lab3(){
     clock_t timeEnd = clock();
     printf("Loop gen time: %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
     timeStart=clock();
-    drawImg(slika);
+    drawBmp(RES,RES,slika,"hello.bmp");
     timeEnd=clock();
     printf("Img gen time:  %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
-    //shraniBMP(slika,RES,RES,"fractal.bmp"); //and now we wait to get this function
 }
 unsigned char barva(struct cplx b){
     unsigned char i;
@@ -45,26 +43,4 @@ unsigned char barva(struct cplx b){
         }
      }
      return 255-i;
-}
-void drawImg(unsigned char arr[RES][RES]){
-    FILE *f = fopen("file.pnm","w");
-    //FILE is an object type
-    //*f points to the newly created "file.pgm" in "w" (write/overwrite) mode
-    if(f==NULL){
-        printf("Error opening file!\n");
-        exit(1);
-    }
-    int i, j;
-    fprintf(f,"P6\n%d %d\n255\n",RES,RES); //pbm type 6 (binary color), resolution (hotizontal, vertical), color step
-    fclose(f);
-
-    f = fopen("file.pnm","ab");
-    for(i=0;i<RES;i++){
-        for(j=0;j<RES;j++){
-            fprintf(f,"%c%c%c",(arr[i][j]*3)%256,\
-                               (arr[i][j]*2)%256,\
-                                arr[i][j]); //RGB
-        }
-    }
-    fclose(f);
 }

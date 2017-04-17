@@ -1,10 +1,18 @@
-# Ignoring personal CBP files
-*.pgm
-*.pnm
-*.bmp
+# Code::Blocks
 *.cbp
 *.depend
 *.layout
+# Visual Studio
+*.vs
+*.sln
+*.vcxproj
+*.vcxproj.filters
+# General
 *.o
 *.exe
+Debug
+# Program output files
 test.txt
+*.pgm
+*.pnm
+*.bmp

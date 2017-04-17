@@ -1,4 +1,5 @@
 #include "../../cdraw/drawBmp.h"
+#include "../../cdraw/drawPnm.h"
 #define RES 2000 //image resolution, "lahko si tud fulhade nardite"
 
 struct cplx {
@@ -27,14 +28,25 @@ void lab3(){
     }
     clock_t timeEnd = clock();
     printf("Loop gen time: %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
+
     timeStart=clock();
-    drawBmp(RES,RES,slika,"hello.bmp");
+    drawBmp(slika,RES,RES,"hello.bmp");
     timeEnd=clock();
-    printf("Img gen time:  %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
+    printf("Bmp gen time:  %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
+
+    timeStart=clock();
+    drawPnm(slika,RES,RES,"hello5.pnm",0);
+    timeEnd=clock();
+    printf("Pnm P5 gen time:  %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
+
+    timeStart=clock();
+    drawPnm(slika,RES,RES,"hello6.pnm",1);
+    timeEnd=clock();
+    printf("Pnm P6 gen time:  %g s\n",(float)(timeEnd-timeStart)/CLOCKS_PER_SEC);
 }
 unsigned char barva(struct cplx b){
     unsigned char i;
-    for (i=0;i<256;i++){
+    for (i=0;i<255;i++){
         tmp=b;
         b.real = tmp.real*tmp.real-tmp.imgn*tmp.imgn+c.real;
         b.imgn = tmp.imgn*tmp.real+tmp.real*tmp.imgn+c.imgn;

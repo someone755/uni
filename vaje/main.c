@@ -4,7 +4,6 @@
 #include <time.h>
 #include <math.h>
 
-//#include "bitmap.h"
 // individual lessons stored as unrelated headers
 //#include "vaja1.h"
 //#include "vaja2.h"
@@ -14,10 +13,13 @@
 //#include "vaja6.h"
 //#include "vaja7.h"
 
+// From here on out, lessons are Arduino
+//#include "vaja8.h"
+
 // laboratory exercises in a separate block of includes
 //#include "lab1.h"
 //#include "lab2.h"
-#include "lab3.h"
+//#include "lab3.h"
 
 int main()
 {
@@ -34,6 +36,6 @@ int main()
 
     //lab1();
     //lab2();
-    lab3();
+    //lab3();
     return 0;
 }

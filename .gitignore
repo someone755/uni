@@ -7,6 +7,14 @@
 *.sln
 *.vcxproj
 *.vcxproj.filters
+# Atom.io/PlatformIO
+*.pioenvs
+*.piolibdeps
+*.clang_complete
+*.gcc-flags.json
+*.yml
+*.ini
+*.gch
 # General
 *.o
 *.exe

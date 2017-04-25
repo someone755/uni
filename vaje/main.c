@@ -12,9 +12,8 @@
 //#include "vaja5.h"
 //#include "vaja6.h"
 //#include "vaja7.h"
-
-// From here on out, lessons are Arduino
 //#include "vaja8.h"
+//#include "vaja9.h"
 
 // laboratory exercises in a separate block of includes
 //#include "lab1.h"
@@ -33,6 +32,8 @@ int main()
     //vaja5();
     //vaja6();
     //vaja7();
+    //vaja8();
+    //vaja9();
 
     //lab1();
     //lab2();

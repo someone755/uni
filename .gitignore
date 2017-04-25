@@ -18,6 +18,7 @@
 # General
 *.o
 *.exe
+*.db
 Debug
 # Program output files
 test.txt

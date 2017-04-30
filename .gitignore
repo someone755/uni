@@ -25,3 +25,4 @@ test.txt
 *.pgm
 *.pnm
 *.bmp
+!lab3.bmp

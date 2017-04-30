@@ -1,0 +1,4 @@
+[submodule "cdraw"]
+	path = cdraw
+	url = https://github.com/someone755/tomfoolery
+	branch = cdraw

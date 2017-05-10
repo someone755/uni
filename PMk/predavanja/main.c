@@ -10,6 +10,7 @@
 #include "predavanje4-06.h"
 #include "predavanje4-13.h"
 #include "predavanje4-20.h"
+//#include "predavanje5-04.ino": Arduino only
 
 int main() {
     printf("Hello predavanja!\n");

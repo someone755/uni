@@ -11,6 +11,7 @@
 #include "predavanje4-13.h"
 #include "predavanje4-20.h"
 //#include "predavanje5-04.ino": Arduino only
+#include "predavanje5-11.h"
 
 int main() {
     printf("Hello predavanja!\n");
@@ -26,7 +27,8 @@ int main() {
     //predavanje3_30();
     //predavanje4_06();
     //predavanje4_13();
-    predavanje4_20();
+    //predavanje4_20();
+    predavanje5_11();
     return 0;
 }
 

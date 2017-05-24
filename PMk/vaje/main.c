@@ -14,6 +14,7 @@
 //#include "vaja7.h"
 //#include "vaja8.h"
 //#include "vaja9.h"
+#include "vaja10.h"
 
 // laboratory exercises in a separate block of includes
 //#include "lab1.h"
@@ -34,6 +35,7 @@ int main()
     //vaja7();
     //vaja8();
     //vaja9();
+    //vaja10();
 
     //lab1();
     //lab2();

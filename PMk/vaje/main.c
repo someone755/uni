@@ -14,12 +14,15 @@
 //#include "vaja7.h"
 //#include "vaja8.h"
 //#include "vaja9.h"
-#include "vaja10.h"
+//#include "vaja10.h"
+/* vaja 11 is arduino only */
+//#include "vaja12.h"
 
 // laboratory exercises in a separate block of includes
 //#include "lab1.h"
 //#include "lab2.h"
 //#include "lab3.h"
+/* lab4 and lab5 are arduino only */
 
 int main()
 {
@@ -36,9 +39,12 @@ int main()
     //vaja8();
     //vaja9();
     //vaja10();
+    /* vaja 11 is arduino only */
+    //vaja12();
 
     //lab1();
     //lab2();
     //lab3();
+    /* lab4 and lab5 are arduino only */
     return 0;
 }

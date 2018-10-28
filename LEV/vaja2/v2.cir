@@ -1,0 +1,73 @@
+
+* neodvisni napetostni vir (lahko pišeš v_vin etc): vime n+ n- dc=1 sin=(offset,ampl,freq)...
+* sin offset se uporabi v časovni analizi
+vin 1   0   dc=0    sin=(0, 0.014984, 5k)
+vdd 3   0   dc=9
+vss 5   0   dc=-9
+* vir za določanje IDQ
+vcurr   6   66  dc=0
+
+* 1k...1000
+* 1m...10e-3
+* 1meg...10e6
+* 1u...10e-6
+r1  3   4   r=37.5k
+r2  4   5   r=150.7k
+
+rs  3   6   r=5.4k
+rd  7   5   r=12.6k
+
+rsi 1   2   r=500
+
+rl  8   0   r=10k
+
+c1  2   4   c=100u
+c2  7   8   c=100u
+cs  6   0   c=100u
+
+* MOSFET: mime d g s b ime_modela par1=xx par2=yy
+* bulk/substrat je ponavadi vezan na source
+m1  7   4   66   66   model_pmos  w=15u    l=1u
+
+.model  model_pmos   pmos    vto=-0.5    kp=0.5m
+
+.control
+destroy all
+
+echo ----------- OP1 -----------
+op
+let vsgq = v(6,4)
+let vsdq = v(6,7)
+let idq=vcurr#branch
+* ali let idq=-i(vcurr) -- tok skozi element
+
+* napetostni vir z dc=0 je kratek stik, ampak lahko izmerimo tok i skozenj
+
+print vsgq vsdq idq v(8)
+
+echo ---------- TRAN1 ----------
+* Time-domain analysis
+* čas. analiza: tran začetni_korak čas_analize začetek_shranjevanja
+* tran dt tstop
+tran    1u 2m
+
+let vin=v(1)
+let vout=v(8)
+
+plot vin vout
+let vin_pp = max(vin)-min(vin)
+let vout_pp = max(vout)-min(vout)
+let av_abs = vout_pp/vin_pp
+print av_abs
+
+fourier 5k  vout
+
+plot v(4) v(6) v(7) 'r: V_G[V], g: V_S[V], b: V_D[v]' xlabel 't'
+
+
+* vhodna upornost
+* print v(4)/(vin#branch)
+
+.endc
+
+.end

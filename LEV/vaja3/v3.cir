@@ -60,8 +60,11 @@ echo ------ FREQ1 ------
 fourier	5k	vout
 
 echo
-echo ------- TF1 -------
-tf v(6)	vcurr_out
-print output_impedance
+echo - INPUT IMPEDANCE -
+let iin_pp = max(vin#branch) - min(vin#branch)
+let uin_pp = max(vin) - min(vin)
+let rin = uin_pp/iin_pp
+print rin
+
 .endc
 .end

@@ -1,0 +1,43 @@
+Vaja 3: MOSFET kaskodni ojačevalnik; Preverjanje izhodne upornosti
+
+vin	1	0	dc=0	sin(0,	0.0,	5k)
+vp	2	0	dc=5
+vn 	5	0	dc=-5
+* preverjanje IDQ z napetostnim virom dc=0
+vcurr	7	8	dc=0
+
+* preverjanje I_izhodni z napetostnim virom dc=0
+* računanje izhodne upornosti po theveninu
+vcurr_out	10	0	dc=0 sin(0,  0.2,    5k)
+
+r1	2	3	r=40483.7
+r2	3	4	r=31627.9
+r3	4	5	r=54400
+
+rd	2	6	r=5k
+rs	9	5	r=5k
+
+c1	1	4	c=100u
+c2	3	0	c=100u
+c3	9	0	c=100u
+
+* dodan kondenzator, da vcurr_out ne premakne delovne točke
+cs  6   10  c=100u
+
+m1	8	4	9	9	model_nmos w=1u 	l=1u
+m2	6	3	7	7	model_nmos w=1u 	l=1u
+
+.model model_nmos	nmos	vto=0.8	kp=1m	lambda=1e-4
+
+.control
+destroy all
+
+op
+tran 1u 1m
+let vin_pp = max(v(10)) - min(v(10))
+let iin_pp = max(vcurr_out#branch) - min(vcurr_out#branch)
+let rout = vin_pp/iin_pp
+print rout
+
+.endc
+.end
